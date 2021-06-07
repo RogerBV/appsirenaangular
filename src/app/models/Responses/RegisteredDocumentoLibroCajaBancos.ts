@@ -1,0 +1,22 @@
+export interface RegisteredDocumentoLibroCajaBancos
+{
+    Sec:Number
+    ,CtaCtb:string
+    ,NomBanco:string
+    ,NumCuenta:string
+    ,Banco:string
+    ,nVouNumero:string
+    ,Fecha:string
+    ,sVouDescripcion:string
+    ,sVouObservacion:string
+    ,NvouAuxiliar_Id:Number
+    ,Moneda:string
+    ,Tipo:string
+    ,Numero:string
+    ,nSaldoIni_Sol:Number
+    ,Debe_Sol:Number
+    ,Haber_Sol:Number
+    ,Saldo_Sol:Number
+    ,sVoucher:string
+    ,FechaImpresion:string
+}
