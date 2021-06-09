@@ -2,7 +2,7 @@
   <mat-label>Bancos</mat-label>
   <mat-select formControlName="bancoControl">
     <mat-option>--</mat-option>
-    <mat-option *ngFor="let banco of bancosList" [value]="banco.sCtaNombre">
+    <mat-option *ngFor="let banco of bancosList" [value]="banco.Banco_Detalle_Id">
       {{banco.sCtaNombre}}
     </mat-option>
   </mat-select>
@@ -20,55 +20,63 @@
   <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="Consultar()" >Consultar</button>
+<button mat-raised-button color="primary" (click)="ConsultarReporteLibroCajaBancos()" >Consultar</button>
 
-<mat-table [dataSource]="registeredDocumentoList" >
-    <ng-container matColumnDef="sVoucher">
-      <mat-header-cell *matHeaderCellDef> N° Com. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.sVoucher}} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="FechaImpresion">
-      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.FechaImpresion | date:'yyyy/MM/dd' }} </mat-cell>
-    </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="Fecha">
-      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.Fecha }} </mat-cell>
-    </ng-container>
+<mat-table [dataSource]="pageSlice" >
+  
+  <ng-container matColumnDef="sVoucher">
+    <mat-header-cell *matHeaderCellDef> N° Com. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sVoucher}} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="FechaImpresion">
+    <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.FechaImpresion | date:'yyyy/MM/dd' }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="Numero">
-      <mat-header-cell *matHeaderCellDef> Numero </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Numero}} </mat-cell>
-    </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="Fecha">
+    <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.Fecha }} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="sVouDescripcion">
-      <mat-header-cell *matHeaderCellDef> Concepto </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.sVouDescripcion}} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="Numero">
+    <mat-header-cell *matHeaderCellDef> Numero </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Numero}} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="sVouObservacion">
-      <mat-header-cell *matHeaderCellDef> Tipo Obligacion </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.sVouObservacion}} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="sVouDescripcion">
+    <mat-header-cell *matHeaderCellDef> Concepto </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sVouDescripcion}} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="Debe_Sol">
-      <mat-header-cell *matHeaderCellDef> Debe </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Debe_Sol}} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="sVouObservacion">
+    <mat-header-cell *matHeaderCellDef> Tipo Obligacion </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sVouObservacion}} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="Haber_Sol">
-      <mat-header-cell *matHeaderCellDef> Haber </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Haber_Sol}} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="Debe_Sol">
+    <mat-header-cell *matHeaderCellDef> Debe </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Debe_Sol}} </mat-cell>
+  </ng-container>
 
-    <ng-container matColumnDef="Saldo_Sol">
-      <mat-header-cell *matHeaderCellDef> Saldo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Saldo_Sol}} </mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="Haber_Sol">
+    <mat-header-cell *matHeaderCellDef> Haber </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Haber_Sol}} </mat-cell>
+  </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <ng-container matColumnDef="Saldo_Sol">
+    <mat-header-cell *matHeaderCellDef> Saldo </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Saldo_Sol}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
 </mat-table>
+
+<mat-paginator [length]="this.registeredDocumentoList.length"
+  [pageSizeOptions]="[15, 20]"
+  [pageSize]="15"
+  (page)="OnPageChange($event)"></mat-paginator>

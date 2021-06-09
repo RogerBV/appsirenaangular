@@ -12,14 +12,14 @@ export class ReportServicesService {
   constructor(private http:HttpClient) { 
     
   }
-  public ConsultarReporteLibroCajaBancos(dFechaInicio:string,dFechaFin:string,banco:string):Observable<RegisteredDocumentoLibroCajaBancos[]>{
+  public ConsultarReporteLibroCajaBancos(dFechaInicio:string,dFechaFin:string,sCtaNombre:string,sBanNombre:string):Observable<RegisteredDocumentoLibroCajaBancos[]>{
     const options = {
       params : new HttpParams()
         .set('dFechaInicio',dFechaInicio)
         .set('dFechaFin',dFechaFin)
-        .set('banco',banco)
+        .set('banco',sCtaNombre)
     }
-    return this.http.get<RegisteredDocumentoLibroCajaBancos[]>(ReportServicesService.apiRouteReport+"ConsultarReporteLibroCajaBancos?dFechaInicio="+dFechaInicio+"&dFechaFin="+dFechaFin+"&banco="+banco);
+    return this.http.get<RegisteredDocumentoLibroCajaBancos[]>(ReportServicesService.apiRouteReport+"ConsultarReporteLibroCajaBancos?dFechaInicio="+dFechaInicio+"&dFechaFin="+dFechaFin+"&sCtaNombre="+sCtaNombre+"&sBanNombre="+sBanNombre);
   }
   public ConsultarBancos():Observable<RegisteredBanco[]>{
     return this.http.get<RegisteredBanco[]>(ReportServicesService.apiRouteReport+"ConsultarBancos");
