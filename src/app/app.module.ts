@@ -18,11 +18,23 @@ import { MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core'
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 const appRoutes : Routes  =[
   {
-    path:'ReporteLibroCajaBancos'
-    ,component:ReportelibrocajabancosFormComponent
-    //,outlet:'second'
+    path:'Menu'
+    ,component:MenuFormComponent
+    ,children:[
+      {
+        path:'ReporteLibroCajaBancos'
+        ,component:ReportelibrocajabancosFormComponent
+        ,outlet:'second'
+      },
+      {
+        path:'Reporteestadocuentaproveedor'
+        ,component:ReporteestadocuentaproveedorFormComponent
+        ,outlet:'second'
+      }
+    ]
   }
 ]
 @NgModule({
@@ -41,6 +53,7 @@ const appRoutes : Routes  =[
     CUSTOM_ELEMENTS_SCHEMA
   ],
   imports: [
+    MatMenuModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,

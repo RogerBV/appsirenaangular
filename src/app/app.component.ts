@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'appsirenaangular';
   constructor(private router:Router) 
   { 
-    this.router.navigate(['/ReporteLibroCajaBancos']);
+    this.router.navigate(['/Menu']);
   }
 }

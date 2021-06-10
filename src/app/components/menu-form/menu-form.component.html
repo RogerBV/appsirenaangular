@@ -1,1 +1,25 @@
-<p>menu-form works!</p>
+<button mat-button [matMenuTriggerFor]="aboveMenu">Contabilidad</button>
+<mat-menu #aboveMenu="matMenu" yPosition="above">
+  <button mat-menu-item [routerLink]="[{ outlets:{ second:['ReporteLibroCajaBancos'] } }]">Reporte de Libro de Caja y Bancos</button>
+  <button mat-menu-item [routerLink]="[{ outlets:{ second:['Reporteestadocuentaproveedor'] } }]">Reporte de Estado de Cuenta Proveedor</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="belowMenu">Proyectos</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="beforeMenu">Logistica</button>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+
+<button mat-button [matMenuTriggerFor]="afterMenu">Finanzas</button>
+<mat-menu #afterMenu="matMenu" xPosition="after">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<router-outlet name="second"></router-outlet>
