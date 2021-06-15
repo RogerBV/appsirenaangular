@@ -18,7 +18,9 @@
   </mat-select>
 </mat-form-field>
 
-<mat-table [dataSource]="pageSlice" >
+<button mat-raised-button color="primary" (click)="ConsultarReporteEstadoCuentaProveedor()" >Consultar</button>
+
+<mat-table [dataSource]="registeredDocumentoList" >
   <ng-container matColumnDef="sDPaNumero">
     <mat-header-cell *matHeaderCellDef> Documento </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.sDPaNumero}} </mat-cell>
@@ -29,8 +31,66 @@
     <mat-cell *matCellDef="let element"> {{element.dDPaFecha}} </mat-cell>
   </ng-container>
 
-  
+  <ng-container matColumnDef="sVoucherReg">
+    <mat-header-cell *matHeaderCellDef> Voucher Reg. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sVoucherReg}} </mat-cell>
+  </ng-container>
 
+  <ng-container matColumnDef="nSaldoInicialSoles">
+    <mat-header-cell *matHeaderCellDef> Saldo Inicial (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nSaldoInicialSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nObligacionSoles">
+    <mat-header-cell *matHeaderCellDef> Obligacion (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nObligacionSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nPagosSoles">
+    <mat-header-cell *matHeaderCellDef> Pagos (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nPagosSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nNotaCreditoSoles">
+    <mat-header-cell *matHeaderCellDef> Nota de Credito (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nNotaCreditoSoles}} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="nVoucherManualSoles">
+    <mat-header-cell *matHeaderCellDef> Voucher Manual (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nVoucherManualSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nCanjeSoles">
+    <mat-header-cell *matHeaderCellDef> Canje (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nCanjeSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nAjusteSoles">
+    <mat-header-cell *matHeaderCellDef> Ajuste (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nAjusteSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nAplicacionAnticipoSoles">
+    <mat-header-cell *matHeaderCellDef> Aplicacion Anticipo (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nAplicacionAnticipoSoles}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nSaldoFinalSoles">
+    <mat-header-cell *matHeaderCellDef> Saldo Final (S/.) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nSaldoFinalSoles}} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="nSaldoInicialMO">
+    <mat-header-cell *matHeaderCellDef> Saldo Inicial MO </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nSaldoInicialMO}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nObligacionMO">
+    <mat-header-cell *matHeaderCellDef> Obligacion MO </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nObligacionMO}} </mat-cell>
+  </ng-container>
+  
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>

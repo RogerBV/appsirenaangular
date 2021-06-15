@@ -16,7 +16,10 @@ export class ReporteestadocuentaproveedorFormComponent implements OnInit {
   public cuentaContableList:RegisteredCuentaContable[] = [];
   public mesList:RegisteredTipoGeneral[] = [];
   public registeredDocumentoList:RegisteredDocumentoEstadoCuentaProveedor[] = [];
-  public displayedColumns: string[] = ['sDPaNumero','dDPaFecha'];
+  public displayedColumns: string[] = ['sDPaNumero','dDPaFecha','sVoucherReg','nSaldoInicialSoles','nObligacionSoles','nPagosSoles'
+  ,'nNotaCreditoSoles','nVoucherManualSoles','nCanjeSoles','nAjusteSoles','nAplicacionAnticipoSoles','nSaldoFinalSoles'
+  ,'nSaldoInicialMO','nObligacionMO'
+];
   public pageSlice = this.registeredDocumentoList.slice(0,15);
   public filtroCuentaContable:FormGroup = new FormGroup({
     cuentaContable:new FormControl()
@@ -39,10 +42,17 @@ export class ReporteestadocuentaproveedorFormComponent implements OnInit {
   public ListMeses()
   {
     this.commonService.ConsultarTipoGeneral("6063").subscribe(response=>{
-      console.log(response);
       this.mesList = response;
     });
   }
+
+  public ConsultarReporteEstadoCuentaProveedor()
+  {
+    this.reportService.ConsultarReporteEstadoCuentaProveedor().subscribe(response=>{
+      this.registeredDocumentoList = response;
+    });
+  }
+
   ngOnInit(): void {
     
   }
