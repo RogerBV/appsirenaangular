@@ -16,4 +16,5 @@ export interface RegisteredDocumentoEstadoCuentaProveedor {
     ,nSaldoFinalSoles:Number
     ,nSaldoInicialMO:Number
     ,nObligacionMO:Number
+    ,nSaldoFinalMO:Number
 }

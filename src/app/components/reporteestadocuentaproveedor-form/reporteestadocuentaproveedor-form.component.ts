@@ -50,6 +50,9 @@ export class ReporteestadocuentaproveedorFormComponent implements OnInit {
   {
     this.reportService.ConsultarReporteEstadoCuentaProveedor().subscribe(response=>{
       this.registeredDocumentoList = response;
+      console.log(this.registeredDocumentoList);
+      this.registeredDocumentoList = this.registeredDocumentoList.filter(x=>x.nSaldoFinalMO == 0);
+      this.registeredDocumentoList = this.registeredDocumentoList.filter(x=>x.nSaldoFinalSoles != 0 );
     });
   }
 
